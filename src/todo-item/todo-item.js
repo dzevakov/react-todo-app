@@ -1,10 +1,12 @@
 import React from 'react'
 import './todo-item.scss'
 import PropTypes from 'prop-types'
+import DeleteContext from '../context/context'
 
-function TodoItem(prpos) {
+function TodoItem(props) {
   const [taskIsEdit, setTaskIsEdit] = React.useState(false)
-  const [taskName, setTaskName] = React.useState(prpos.taskName)
+  const [taskName, setTaskName] = React.useState(props.taskName)
+  const { deleteTodo } = React.useContext(DeleteContext)
 
   const taskEditHandler = () => {
     setTaskIsEdit(!taskIsEdit)
@@ -37,7 +39,8 @@ function TodoItem(prpos) {
           taskIsEdit ? 'save' : 'edit'
         }
       </button>
-      <button className={'task-block__button task-block__button_delete'}>
+      <button className={'task-block__button task-block__button_delete'}
+        onClick={() => deleteTodo(props.id)}>
         delete
       </button>
     </div>
@@ -45,6 +48,7 @@ function TodoItem(prpos) {
 }
 
 TodoItem.propTypes = {
+  id: PropTypes.number,
   taskName: PropTypes.string
 }
 

@@ -10,6 +10,7 @@ function TodoList(props) {
           return(
             <TodoItem
               key={todo.id}
+              id={todo.id}
               taskName={todo.name}
             />
           )
@@ -20,8 +21,7 @@ function TodoList(props) {
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array,
-  onAddTodo: PropTypes.func
+  todos: PropTypes.array
 }
 
 export default TodoList
