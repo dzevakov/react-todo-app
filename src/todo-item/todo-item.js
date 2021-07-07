@@ -1,16 +1,13 @@
 import React from 'react'
 import './todo-item.scss'
+import PropTypes from 'prop-types'
 
-function TodoItem() {
+function TodoItem(prpos) {
   const [taskIsEdit, setTaskIsEdit] = React.useState(false)
-  const [taskName, setTaskName] = React.useState('Buy milk')
+  const [taskName, setTaskName] = React.useState(prpos.taskName)
 
   const taskEditHandler = () => {
-    if (taskIsEdit) {
-      setTaskIsEdit(false)
-    } else {
-      setTaskIsEdit(true)
-    }
+    setTaskIsEdit(!taskIsEdit)
   }
 
   const taskNameChangeHandler = (newTaskName) => {
@@ -27,7 +24,7 @@ function TodoItem() {
           onChange={(event) => {
             taskNameChangeHandler(event.target.value)
           }}
-          placeholder={taskName}
+          value={taskName}
         />
       ) : (
         <label className={'task-block__task'}>{taskName}</label>
@@ -45,6 +42,10 @@ function TodoItem() {
       </button>
     </div>
   )
+}
+
+TodoItem.propTypes = {
+  taskName: PropTypes.string
 }
 
 export default TodoItem
