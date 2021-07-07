@@ -1,13 +1,48 @@
 import React from 'react'
+import './todo-item.scss'
 
 function TodoItem() {
+  const [taskIsEdit, setTaskIsEdit] = React.useState(false)
+  const [taskName, setTaskName] = React.useState('Buy milk')
+
+  const taskEditHandler = () => {
+    if (taskIsEdit) {
+      setTaskIsEdit(false)
+    } else {
+      setTaskIsEdit(true)
+    }
+  }
+
+  const taskNameChangeHandler = (newTaskName) => {
+    setTaskName(newTaskName)
+  }
+
   return (
-    <div>
+    <div className={'task-block'}>
       <input type={'checkbox'} />
-      <label className={'task'}>Buy milk</label>
-      <label type={'text'} />
-      <button className={'edit'}>edit</button>
-      <button className={'delete'}>delete</button>
+      {taskIsEdit ? (
+        <input
+          className={'task-block__text'}
+          type={'text'}
+          onChange={(event) => {
+            taskNameChangeHandler(event.target.value)
+          }}
+          placeholder={taskName}
+        />
+      ) : (
+        <label className={'task-block__task'}>{taskName}</label>
+      )}
+      <button
+        className={'task-block__button task-block__button_edit'}
+        onClick={taskEditHandler}
+      >
+        {
+          taskIsEdit ? 'save' : 'edit'
+        }
+      </button>
+      <button className={'task-block__button task-block__button_delete'}>
+        delete
+      </button>
     </div>
   )
 }
