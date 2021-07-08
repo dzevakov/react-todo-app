@@ -1,0 +1,29 @@
+$buttonWidth: 80px;
+
+.create-todo-title{
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.create-todo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+
+  &__text{
+    width: calc(80% - #{$buttonWidth});
+    margin-right: 10px;
+  }
+
+  &__button{
+    width: $buttonWidth;
+    text-transform: capitalize;
+  }
+}
+
