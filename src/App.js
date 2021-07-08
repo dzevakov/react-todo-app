@@ -3,13 +3,14 @@ import './App.css'
 import TodoList from './todo-list/todo-list'
 import CreateTodo from './create-todo/create-todo'
 import DeleteContext from './context/context'
+import appStorage from './appStorage/appStorage'
 
 function App() {
-  const [todos, setTodos] = React.useState([
-    {id: 0, name: 'Buy milk', isDone: false},
-    {id: 1, name: 'Buy bread', isDone: false},
-    {id: 2, name: 'Wash the dishes', isDone: false}
-  ])
+  const [todos, setTodos] = React.useState(appStorage())
+
+  React.useEffect(() => {
+    localStorage.setItem('todoapp', JSON.stringify(todos))
+  })
 
   const addTodo = (newTodoName) => {
     const newTodo = {
@@ -18,7 +19,6 @@ function App() {
       isDone: false
     }
     setTodos(todos.concat([newTodo]))
-    console.log(todos)
   }
 
   const todoToggleHandler = (todoId) => {
@@ -26,6 +26,17 @@ function App() {
       todos.map(todo => {
         if (todo.id === todoId) {
           todo.isDone = !todo.isDone
+        }
+        return todo
+      })
+    )
+  }
+
+  const todoChangeNameHandler = (todoId, newName) => {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === todoId) {
+          todo.name = newName
         }
         return todo
       })
@@ -45,7 +56,7 @@ function App() {
         <CreateTodo onAddTodo={addTodo}/>
         <hr />
         <DeleteContext.Provider value={{deleteTodo}}>
-          <TodoList todos={todos} onToggle={todoToggleHandler}/>
+          <TodoList todos={todos} onChangeName={todoChangeNameHandler} onToggle={todoToggleHandler}/>
         </DeleteContext.Provider>
       </section>
     </div>
