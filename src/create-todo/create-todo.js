@@ -18,7 +18,7 @@ function CreateTodo(props) {
 
   return (
     <React.Fragment>
-      <p className={'create-todo-title'}>Create you new task</p>
+      <p className={'create-todo-title'}>Create your new task</p>
       <div className={'create-todo'}>
         <input
           className={'create-todo__text'}
