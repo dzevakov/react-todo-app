@@ -1,6 +1,13 @@
 $buttonWidth: 80px;
 
-.create-todo-title{
+.create-task-block {
+  top: 120px;
+  position: sticky;
+  padding: 20px 0;
+  background-color: #e8e8e8;
+}
+
+.create-todo-title {
   font-family: Arial, sans-serif;
   font-style: italic;
   font-weight: 700;
@@ -9,21 +16,20 @@ $buttonWidth: 80px;
   text-decoration: underline;
 }
 
-.create-todo{
+.create-todo {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin: 20px 0;
 
-  &__text{
+  &__text {
     width: calc(80% - #{$buttonWidth});
     margin-right: 10px;
   }
 
-  &__button{
+  &__button {
     width: $buttonWidth;
     text-transform: capitalize;
   }
 }
-

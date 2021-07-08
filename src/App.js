@@ -16,14 +16,14 @@ function App() {
     const newTodo = {
       id: Date.now(),
       name: newTodoName,
-      isDone: false
+      isDone: false,
     }
     setTodos(todos.concat([newTodo]))
   }
 
   const todoToggleHandler = (todoId) => {
     setTodos(
-      todos.map(todo => {
+      todos.map((todo) => {
         if (todo.id === todoId) {
           todo.isDone = !todo.isDone
         }
@@ -34,7 +34,7 @@ function App() {
 
   const todoChangeNameHandler = (todoId, newName) => {
     setTodos(
-      todos.map(todo => {
+      todos.map((todo) => {
         if (todo.id === todoId) {
           todo.name = newName
         }
@@ -44,23 +44,31 @@ function App() {
   }
 
   const deleteTodo = (taskID) => {
-    setTodos(todos.filter(todo => todo.id !== taskID))
+    setTodos(todos.filter((todo) => todo.id !== taskID))
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <header className='App-header'>
         <h1>ToDo App</h1>
       </header>
       <section className={'wrapper-app'}>
-        <CreateTodo onAddTodo={addTodo}/>
-        <hr />
-        <DeleteContext.Provider value={{deleteTodo}}>
-          <TodoList todos={todos} onChangeName={todoChangeNameHandler} onToggle={todoToggleHandler}/>
-        </DeleteContext.Provider>
+        <CreateTodo onAddTodo={addTodo} />
+        <div
+          className={'task-list'}
+          style={{ backgroundImage: 'url(/squared-paper-texture.jpg)' }}
+        >
+          <DeleteContext.Provider value={{ deleteTodo }}>
+            <TodoList
+              todos={todos}
+              onChangeName={todoChangeNameHandler}
+              onToggle={todoToggleHandler}
+            />
+          </DeleteContext.Provider>
+        </div>
       </section>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

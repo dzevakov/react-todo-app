@@ -17,7 +17,7 @@ function CreateTodo(props) {
   }
 
   return (
-    <React.Fragment>
+    <div className={'create-task-block'}>
       <p className={'create-todo-title'}>Create your new task</p>
       <div className={'create-todo'}>
         <input
@@ -30,7 +30,8 @@ function CreateTodo(props) {
           create task
         </button>
       </div>
-    </React.Fragment>
+      <hr />
+    </div>
   )
 }
 
