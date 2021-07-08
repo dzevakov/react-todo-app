@@ -59,11 +59,14 @@ function App() {
           style={{ backgroundImage: 'url(/squared-paper-texture.jpg)' }}
         >
           <DeleteContext.Provider value={{ deleteTodo }}>
-            <TodoList
+            {todos.length
+              ? <TodoList
               todos={todos}
               onChangeName={todoChangeNameHandler}
               onToggle={todoToggleHandler}
-            />
+            /> : <p style={{fontSize: '18px', fontWeight: '700'}}>No task for today</p>
+            }
+
           </DeleteContext.Provider>
         </div>
       </section>
