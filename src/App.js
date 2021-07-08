@@ -6,17 +6,30 @@ import DeleteContext from './context/context'
 
 function App() {
   const [todos, setTodos] = React.useState([
-    {id: 0, name: 'Buy milk'},
-    {id: 1, name: 'Buy bread'},
-    {id: 2, name: 'Wash the dishes'}
+    {id: 0, name: 'Buy milk', isDone: false},
+    {id: 1, name: 'Buy bread', isDone: false},
+    {id: 2, name: 'Wash the dishes', isDone: false}
   ])
 
   const addTodo = (newTodoName) => {
     const newTodo = {
       id: Date.now(),
-      name: newTodoName
+      name: newTodoName,
+      isDone: false
     }
     setTodos(todos.concat([newTodo]))
+    console.log(todos)
+  }
+
+  const todoToggleHandler = (todoId) => {
+    setTodos(
+      todos.map(todo => {
+        if (todo.id === todoId) {
+          todo.isDone = !todo.isDone
+        }
+        return todo
+      })
+    )
   }
 
   const deleteTodo = (taskID) => {
@@ -32,7 +45,7 @@ function App() {
         <CreateTodo onAddTodo={addTodo}/>
         <hr />
         <DeleteContext.Provider value={{deleteTodo}}>
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onToggle={todoToggleHandler}/>
         </DeleteContext.Provider>
       </section>
     </div>

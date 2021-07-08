@@ -12,6 +12,8 @@ function TodoList(props) {
               key={todo.id}
               id={todo.id}
               taskName={todo.name}
+              isDone={todo.isDone}
+              onToggle={props.onToggle}
             />
           )
         })
@@ -21,7 +23,8 @@ function TodoList(props) {
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array
+  todos: PropTypes.array,
+  onToggle: PropTypes.func
 }
 
 export default TodoList

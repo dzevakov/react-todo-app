@@ -16,9 +16,15 @@ function TodoItem(props) {
     setTaskName(newTaskName)
   }
 
+  let taskDoneClass = 'task-block__task'
+
+  if (props.isDone) {
+    taskDoneClass = taskDoneClass + ' done'
+  }
+
   return (
     <div className={'task-block'}>
-      <input type={'checkbox'} />
+      <input type={'checkbox'} onChange={() => props.onToggle(props.id)} />
       {taskIsEdit ? (
         <input
           className={'task-block__text'}
@@ -29,7 +35,7 @@ function TodoItem(props) {
           value={taskName}
         />
       ) : (
-        <label className={'task-block__task'}>{taskName}</label>
+        <p className={taskDoneClass}>{taskName}</p>
       )}
       <button
         className={'task-block__button task-block__button_edit'}
@@ -49,7 +55,9 @@ function TodoItem(props) {
 
 TodoItem.propTypes = {
   id: PropTypes.number,
-  taskName: PropTypes.string
+  taskName: PropTypes.string,
+  isDone: PropTypes.bool,
+  onToggle: PropTypes.func
 }
 
 export default TodoItem
