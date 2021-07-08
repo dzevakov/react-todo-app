@@ -13,6 +13,7 @@ function TodoList(props) {
               id={todo.id}
               taskName={todo.name}
               isDone={todo.isDone}
+              onChangeName={props.onChangeName}
               onToggle={props.onToggle}
             />
           )
@@ -24,6 +25,7 @@ function TodoList(props) {
 
 TodoList.propTypes = {
   todos: PropTypes.array,
+  onChangeName: PropTypes.func,
   onToggle: PropTypes.func
 }
 

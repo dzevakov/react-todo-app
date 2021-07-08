@@ -9,7 +9,14 @@ function TodoItem(props) {
   const { deleteTodo } = React.useContext(DeleteContext)
 
   const taskEditHandler = () => {
+    if (taskIsEdit) {
+      saveTodo()
+    }
     setTaskIsEdit(!taskIsEdit)
+  }
+
+  const saveTodo = () => {
+    props.onChangeName(props.id, taskName)
   }
 
   const taskNameChangeHandler = (newTaskName) => {
@@ -57,6 +64,7 @@ TodoItem.propTypes = {
   id: PropTypes.number,
   taskName: PropTypes.string,
   isDone: PropTypes.bool,
+  onChangeName: PropTypes.func,
   onToggle: PropTypes.func
 }
 
