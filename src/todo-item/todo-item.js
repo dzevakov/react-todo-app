@@ -23,9 +23,8 @@ function TodoItem(props) {
     setTaskName(newTaskName)
   }, [taskName])
 
-  const handleToggle = React.useCallback(() => props.onToggle(props.id), [props.id])
-
-  const handleDelete = React.useCallback(() => props.onDelete(props.id), [props.id])
+  const handleToggle = () => props.onToggle(props.id)
+  const handleDelete = () => props.onDelete(props.id)
 
   const taskDoneClass = React.useMemo(() => createClassName(props.isDone), [props.isDone])
 
